@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{listings,amsmath}
+
+%Listings Settings
+\lstset{frame=tb,
+language=python,
+aboveskip=3mm,
+belowskip=3mm,
+showstringspaces=false,
+columns=flexible,
+basicstyle={\ttfamily}
+}
+
+%Custom Commands
+\newcommand{\git}{{\texttt{git}}}
+\newcommand{\github}{{\texttt{Github}}}
+\newcommand{\Python}{{\texttt{Python}}}
+\newcommand{\python}{{\texttt{python}}}
+\newcommand{\Anaconda}{{\texttt{Anaconda}}}
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\ket}[1]{\left |#1\right \rangle}  
+\newcommand{\bra}[1]{\left \langle #1\right |}  
+\newcommand{\braket}[2]{\left \langle #1 \vert #2 \right \rangle}
+
+\begin{document}
+
+\begin{center}
+
+\vspace*{-2.5cm}
+\LARGE
+\bf{Homework 5}
+\vspace{1cm}
+
+\large{Due: Oct. 26, 2018}
+\vspace{1cm}
+
+\end{center}
+
+Write a \Python{} program to study orbits by solving ordinary differential equations with a variety of methods. Validate your methods and demonstrate their convergence using the Kepler problem. Apply your methods to study the motion of Halley's comet and the star S2.
+
+\begin{enumerate}
+	\item {\bf Convergence} 
+		Write \Python{} functions to evolve a system of first-order ODEs $\dot{x}_i(t) = f_i(t, x)$ using Forward-Euler, RK2, RK4, and Verlet.  For each method, using a variety of time steps, compute the orbit of Mars for $T=5$ (Earth) years, beginning from aphelion.  Ignore the effect of other planets, and assume the sun is fixed.  Compute the exact position $\vec{r}(T)$ of Mars at this time by solving the Kepler problem. Make a convergence plot of the $L_1$ error $|\vec{r}(T)_{numerical} - \vec{r}(T)_{exact}|$ versus number of steps $N$ for each method.  Plot the energy versus time for each method as well.  
+		\begin{itemize}
+			\item Do the methods converge as expected?  How many time steps per orbit are required for the theoretical scaling to begin?
+			\item How well do the methods conserve energy?  When may this be a problem?
+		\end{itemize}
+	\item {\bf Halley's Comet} 
+		Write an \emph{adaptive} RK4 method, and use it to compute the orbit of Halley's comet for a few orbital periods. Compare its performance to non-adaptive RK4 and Verlet.  How long does it take to run each and get similar errors?
+	\item {\bf S2} 
+		The star S2 orbits the black hole at the centre of the Milky Way, Sagitarrius A*, sufficiently close that general relativity is important.  One can treat general relativity in an approximate way by replacing the Newtonian potential $\phi_N = -GM/r$ with the Paczy\'{n}ski-Wiita potential $\phi_{PW} = -GM / (r-r_S)$, where $r_S = 2GM/c^2$ is the Schwarzschild radius of the mass.  Compute several orbits of S2 using both $\phi_N$ and $\phi_{PW}$.  What is the difference?  Using your results, calculate the precession of the periapse of S2.  How many time steps per orbit should you use to ensure an accurate answer?  Earth-based telescopes in the coming years are going to measure this!
+\end{enumerate}
+
+Write a report summarizing your work, showing all plots, giving your results, and discussing the questions.  Include the \texttt{.pdf} version of the report and all Python files in the repo.
+
+\vspace{1cm}
+
+\textbf{Reference:} See Newman Chapter 8 for discussion of ODE solvers and Chapter 6 for methods of solving non-linear equations (like the kepler problem!).
+
+\end{document}
+
